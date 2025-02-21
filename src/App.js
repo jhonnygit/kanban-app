@@ -22,12 +22,30 @@ export default class App extends react.Component {
       ]
     };
   }
+
+  addNote =() =>{
+    this.setState({
+      notes:this.state.notes.concat([{
+        id:uuidv4(),
+        task: 'new task'
+      }])
+    })
+  }
+
+  deleteNote = (id,e)=>{
+    //deja eventos en proceso
+    e.stopPropagation();
+    this.setState({
+      notes:this.state.notes.filter(note=>note.id !==id)
+    });  
+  }
+
   render(){
     const {notes} = this.state
     return (
       <div className="App">
-        <button onClick={()=>console.log('añaidr nota')}>+</button>
-        <Notes notes={notes}/>
+        <button onClick={this.addNote}>+</button>
+        <Notes notes={notes} onDelete={this.deleteNote}/>
       </div>
     );
   }
