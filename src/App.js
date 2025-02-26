@@ -2,7 +2,7 @@ import react from 'react';
 import './App.css';
 import { v4 as uuidv4 } from 'uuid';
 import Notes from './components/Notes';
-
+import connect from './libs/connects';
 
 
 export default class App extends react.Component {
@@ -68,6 +68,7 @@ export default class App extends react.Component {
     const {notes} = this.state
     return (
       <div className="App">
+        
         <button className='add-note' onClick={this.addNote}>+</button>
         <Notes 
           notes={notes} 
@@ -80,5 +81,7 @@ export default class App extends react.Component {
     );
   }
 }
+
+
 
 
